@@ -1,7 +1,12 @@
 import React from "react";
+import { HeaderStyle, Title } from "./Header.style";
 
 function Header() {
-  return <h1>I am the header</h1>;
+  return (
+    <HeaderStyle>
+      <Title>Marvel Heroes</Title>
+    </HeaderStyle>
+  );
 }
 
 export default Header;

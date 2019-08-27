@@ -1,13 +1,15 @@
 import React from "react";
-import axios from "axios";
 import "normalize.css";
 import Header from "./components/Header";
+import StyledApp from "./App.style";
+import CharactersList from "./components/CharactersList";
 
 function App() {
   return (
-    <div className="App">
+    <StyledApp>
       <Header />
-    </div>
+      <CharactersList />
+    </StyledApp>
   );
 }
 
