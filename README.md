@@ -1,3 +1,3 @@
 ## Marvel API
 
-SPA using React with Marvel API. ::fire
+SPA using React with Marvel API. ::fire::
