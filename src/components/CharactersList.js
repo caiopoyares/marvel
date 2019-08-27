@@ -25,7 +25,7 @@ function CharactersList() {
     <CharactersContainer>
       <List>
         {heroes &&
-          heroes.map(({ name, thumbnail, series, comics }) => {
+          heroes.map(({ name, thumbnail, comics }) => {
             return (
               <li key={name} style={{ textAlign: "center" }}>
                 <ImageContainer>
