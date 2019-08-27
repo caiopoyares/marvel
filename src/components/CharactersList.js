@@ -15,21 +15,33 @@ function CharactersList() {
   useEffect(() => {
     axios
       .get(`${endPoint}/characters?apikey=${apiKey}`)
-      .then(response => setHeroes(response.data.data.results));
+      .then(
+        response =>
+          setHeroes(response.data.data.results) ||
+          console.log(response.data.data.results)
+      );
   }, []);
   return (
     <CharactersContainer>
       <List>
         {heroes &&
-          heroes.map(({ name, thumbnail }) => {
+          heroes.map(({ name, thumbnail, series, comics }) => {
             return (
-              <li key={name}>
+              <li key={name} style={{ textAlign: "center" }}>
                 <ImageContainer>
                   <Image
                     src={`${thumbnail.path}.${thumbnail.extension}`}
                     alt={name}
                   />
                 </ImageContainer>
+                <h4 style={{ marginBottom: ".2rem", marginTop: ".8rem" }}>
+                  {name}
+                </h4>
+                <small style={{ color: "#777" }}>
+                  Presente em{" "}
+                  <span style={{ fontWeight: 700 }}>{comics.available}</span>{" "}
+                  quadrinhos
+                </small>
               </li>
             );
           })}

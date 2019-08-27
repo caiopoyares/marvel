@@ -5,7 +5,7 @@ const HeaderStyle = styled.div`
 `;
 
 const Title = styled.h1`
-  color: crimson;
+  color: black;
 `;
 
 export { HeaderStyle, Title };
