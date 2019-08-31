@@ -7,11 +7,16 @@ const CharactersContainer = styled.div`
 
 const List = styled.ul`
   display: grid;
-  grid-gap: 50px 30px;
+  grid-gap: 30px 10px;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 10px;
+
+  li {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -19,6 +24,7 @@ const ImageContainer = styled.div`
   height: 250px;
   object-fit: cover;
   overflow: hidden;
+  margin: 0 auto;
 `;
 
 const Image = styled.img`
