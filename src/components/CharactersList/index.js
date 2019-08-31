@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import {
-  CharactersContainer,
-  List,
-  Image,
-  ImageContainer
-} from "./CharactersList.style.js";
+import { CharactersContainer, List, Image, ImageContainer } from "./style";
+
+import SeeMoreBtn from "./SeeMoreBtn";
 
 const endPoint = "https://gateway.marvel.com:443/v1/public";
 const apiKey = "68656f31c3623d9a8cfcc697750b60bc";
 
 function CharactersList({ dispatch, heroes }) {
-  //const [heroes, setHeroes] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const offset = 0 + 20 * currentPage;
+
   useEffect(() => {
+    const offset = 0 + 20 * currentPage;
     axios
       .get(`${endPoint}/characters?apikey=${apiKey}&offset=${offset}&limit=20`)
       .then(response =>
@@ -24,7 +21,7 @@ function CharactersList({ dispatch, heroes }) {
           payload: response.data.data.results
         })
       );
-  }, []);
+  }, [currentPage, dispatch]);
   return (
     <CharactersContainer>
       <List>
@@ -50,12 +47,16 @@ function CharactersList({ dispatch, heroes }) {
             );
           })}
       </List>
+      <SeeMoreBtn
+        currPage={currentPage}
+        nextPage={() => setCurrentPage(currPage => currPage + 1)}
+      />
     </CharactersContainer>
   );
 }
 
 const mapStateToProps = state => ({
-  heroes: state.allCharacters
+  heroes: state.characters.charactersFetched
 });
 
 export default connect(mapStateToProps)(CharactersList);
