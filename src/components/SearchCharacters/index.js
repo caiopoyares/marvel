@@ -16,7 +16,7 @@ const SearchCharacters = ({ location }) => {
 
   useEffect(() => {
     const query = queryString.parse(location.search).query;
-    const endpoint = `https://gateway.marvel.com:443/v1/public/characters?name=${query}&apikey=${apiKey}`;
+    const endpoint = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&apikey=${apiKey}`;
     axios(endpoint).then(response =>
       setHerosResult(response.data.data.results)
     );

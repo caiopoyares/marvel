@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { withRouter } from "react-router-dom";
 import { MdSearch } from "react-icons/md";
 import { StyledForm } from "./style";

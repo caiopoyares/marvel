@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const CharactersContainer = styled.div`
   max-width: 1100px;
@@ -39,4 +40,9 @@ const Image = styled.img`
   }
 `;
 
-export { CharactersContainer, List, Image, ImageContainer };
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`;
+
+export { CharactersContainer, List, Image, ImageContainer, StyledLink };
