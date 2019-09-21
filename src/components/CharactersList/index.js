@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { CharactersContainer, List, Image, ImageContainer, StyledLink } from "./style";
+import { CharactersContainer, List } from "./style";
+import CharacterBox from "../CharacterBox";
 
 import SeeMoreBtn from "./SeeMoreBtn";
 
@@ -20,32 +21,22 @@ function CharactersList({ dispatch, heroes }) {
           type: "FETCH_CHARACTERS",
           payload: response.data.data.results
         })
-      ).then(data => console.log(data));
+      );
   }, [currentPage, dispatch]);
+
   return (
     <CharactersContainer>
       <List>
         {heroes &&
           heroes.map(({ name, thumbnail, comics, id }) => {
             return (
-              <li key={name}>
-                <StyledLink to={`/hero/${id}`}>
-                  <ImageContainer>
-                    <Image
-                      src={`${thumbnail.path}.${thumbnail.extension}`}
-                      alt={name}
-                    />
-                  </ImageContainer>
-                  <h4 style={{ marginBottom: ".2rem", marginTop: ".8rem" }}>
-                    {name}
-                  </h4>
-                  <small style={{ color: "#777" }}>
-                    Presente em{" "}
-                    <span style={{ fontWeight: 700 }}>{comics.available}</span>{" "}
-                    quadrinhos
-                  </small>
-                </StyledLink>
-              </li>
+              <CharacterBox
+                key={name}
+                name={name}
+                thumbnail={thumbnail}
+                comics={comics}
+                id={id}
+              />
             );
           })}
       </List>

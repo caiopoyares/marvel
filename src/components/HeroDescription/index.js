@@ -16,7 +16,7 @@ const HeroDescription = ({ match }) => {
         setHeroInfo(response.data.data.results[0]) ||
         console.log(response.data.data.results[0])
     );
-  }, []);
+  }, [match.params.heroId]);
 
   const {
     thumbnail,
@@ -34,7 +34,10 @@ const HeroDescription = ({ match }) => {
         <>
           <div className="img-container">
             {thumbnail && (
-              <img src={`${thumbnail.path}.${thumbnail.extension}`} />
+              <img
+                src={`${thumbnail.path}.${thumbnail.extension}`}
+                alt={`${thumbnail.name}`}
+              />
             )}
           </div>
           <div>
@@ -61,7 +64,12 @@ const HeroDescription = ({ match }) => {
               </p>
             </div>
             {urls.length > 0 && (
-              <a href={urls[0].url} className="detail-btn" target="_blank">
+              <a
+                href={urls[0].url}
+                className="detail-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Mais detalhes
               </a>
             )}

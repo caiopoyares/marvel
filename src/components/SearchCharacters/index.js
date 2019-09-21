@@ -2,12 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import queryString from "query-string";
 // Get styles from characters list
-import {
-  CharactersContainer,
-  List,
-  Image,
-  ImageContainer
-} from "../CharactersList/style";
+import { CharactersContainer, List } from "../CharactersList/style";
+import CharacterBox from "../CharacterBox";
 
 const apiKey = "68656f31c3623d9a8cfcc697750b60bc";
 
@@ -21,28 +17,20 @@ const SearchCharacters = ({ location }) => {
       setHerosResult(response.data.data.results)
     );
   }, [location.search]);
+
   return (
     <CharactersContainer>
       <List>
-        {HerosResult &&
-          HerosResult.map(({ name, thumbnail, comics }) => {
+        {HerosResult.length > 0 &&
+          HerosResult.map(({ name, thumbnail, comics, id }) => {
             return (
-              <li key={name}>
-                <ImageContainer>
-                  <Image
-                    src={`${thumbnail.path}.${thumbnail.extension}`}
-                    alt={name}
-                  />
-                </ImageContainer>
-                <h4 style={{ marginBottom: ".2rem", marginTop: ".8rem" }}>
-                  {name}
-                </h4>
-                <small style={{ color: "#777" }}>
-                  Presente em{" "}
-                  <span style={{ fontWeight: 700 }}>{comics.available}</span>{" "}
-                  quadrinhos
-                </small>
-              </li>
+              <CharacterBox
+                key={name}
+                name={name}
+                thumbnail={thumbnail}
+                comics={comics}
+                id={id}
+              />
             );
           })}
       </List>
