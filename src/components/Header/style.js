@@ -12,7 +12,7 @@ const Title = styled.h1`
   color: black;
   display: flex;
   align-items: center;
-  padding: 0.5rem;
+  padding: 1.2rem;
   img {
     max-width: 80px;
   }

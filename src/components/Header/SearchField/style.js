@@ -13,7 +13,11 @@ const StyledForm = styled.form`
     @media (min-width: 800px) {
       font-size: 1rem;
       max-width: 8rem;
-      height: 1.7rem;
+      height: 2rem;
+    }
+
+    &::placeholder {
+      font-size: 0.9rem;
     }
   }
 
@@ -27,12 +31,12 @@ const StyledForm = styled.form`
     border-left: 1px solid #ddd;
     @media (min-width: 800px) {
       font-size: 1.1rem;
-      height: 1.7rem;
+      height: 2rem;
     }
   }
 
   svg {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 `;
 

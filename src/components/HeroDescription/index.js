@@ -40,11 +40,17 @@ const HeroDescription = ({ match }) => {
               />
             )}
           </div>
-          <div>
+          <div className="hero-description-box">
             <div className="hero-description">
               <h3 className="hero__name">{name}</h3>
-              {description !== "" && (
-                <p className="hero__subtitle">{description}</p>
+              {description !== "" ? (
+                <small>{description}</small>
+              ) : (
+                <small>
+                  Sorry, there is no description available for this hero at the
+                  moment. Click on this card to get more information about him
+                  and his comic books.
+                </small>
               )}
               <p>
                 <span>Quadrinhos: </span>
@@ -57,10 +63,6 @@ const HeroDescription = ({ match }) => {
               <p>
                 <span>Histórias: </span>
                 {stories.available}
-              </p>
-              <p>
-                <span>Quadrinhos: </span>
-                {comics.available}
               </p>
             </div>
             {urls.length > 0 && (

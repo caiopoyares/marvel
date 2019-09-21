@@ -11,18 +11,22 @@ const BtnContainer = styled.div`
 const Loader = styled(Spinner)`
   position: "relative";
   height: 40px;
+  color: white;
 `;
 
 const Button = styled.button`
   cursor: pointer;
-  background-color: #ed1d24;
+  background-color: crimson;
   text-transform: uppercase;
   color: white;
   border: none;
   border-radius: 2px;
   padding: 0.6rem 1.2rem;
   min-height: 40px;
-  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+  &:hover {
+    background-color: #cc1036;
+  }
 `;
 
 export { BtnContainer, Button, Loader };

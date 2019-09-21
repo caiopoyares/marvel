@@ -28,7 +28,7 @@ function CharactersList({ dispatch, heroes }) {
     <CharactersContainer>
       <List>
         {heroes &&
-          heroes.map(({ name, thumbnail, comics, id }) => {
+          heroes.map(({ name, thumbnail, comics, id, description }) => {
             return (
               <CharacterBox
                 key={name}
@@ -36,6 +36,7 @@ function CharactersList({ dispatch, heroes }) {
                 thumbnail={thumbnail}
                 comics={comics}
                 id={id}
+                description={description}
               />
             );
           })}

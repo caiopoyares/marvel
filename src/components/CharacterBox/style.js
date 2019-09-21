@@ -7,8 +7,10 @@ const StyledLink = styled(Link)`
 `;
 
 const ImageContainer = styled.div`
-  width: 250px;
-  height: 250px;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 260px;
   object-fit: cover;
   overflow: hidden;
   margin: 0 auto;
@@ -18,11 +20,33 @@ const Image = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-height: 100%;
-  transition: 0.4s;
+  max-width: 100%;
+`;
+
+const StyledListItem = styled.li`
+  text-align: left;
+  transition: 0.2s;
   &:hover {
-    transform: scale(1.1);
+    transform: translateY(-8px);
+  }
+
+  h4 {
+    font-size: 1rem;
+    margin-bottom: 0.9rem;
+  }
+
+  small {
+    display: inline-block;
+    line-height: 1.4;
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .character-info {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 `;
 
-export { Image, ImageContainer, StyledLink };
+export { Image, ImageContainer, StyledLink, StyledListItem };

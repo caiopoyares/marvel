@@ -8,15 +8,17 @@ const CharactersContainer = styled.div`
 
 const List = styled.ul`
   display: grid;
-  grid-gap: 30px 10px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   list-style: none;
   margin: 0;
   padding: 0 10px;
 
   li {
-    text-align: center;
-    margin-bottom: 1rem;
+    background-color: white;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.3);
   }
 `;
 

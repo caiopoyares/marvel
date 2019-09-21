@@ -20,7 +20,7 @@ const SeeMoreBtn = ({ heroes, currPage, nextPage }) => {
         {loaded ? (
           <Button onClick={() => nextPg()}>Ver mais</Button>
         ) : (
-          <Loader />
+          <Loader color="#fff" />
         )}
       </BtnContainer>
     )

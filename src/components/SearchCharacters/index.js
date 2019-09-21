@@ -22,7 +22,7 @@ const SearchCharacters = ({ location }) => {
     <CharactersContainer>
       <List>
         {HerosResult.length > 0 &&
-          HerosResult.map(({ name, thumbnail, comics, id }) => {
+          HerosResult.map(({ name, thumbnail, comics, id, description }) => {
             return (
               <CharacterBox
                 key={name}
@@ -30,6 +30,7 @@ const SearchCharacters = ({ location }) => {
                 thumbnail={thumbnail}
                 comics={comics}
                 id={id}
+                description={description}
               />
             );
           })}
