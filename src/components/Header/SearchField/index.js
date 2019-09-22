@@ -14,6 +14,7 @@ const SearchField = props => {
       return;
     } else {
       props.history.push(`/search?query=${textInput.current.value}`);
+      textInput.current.value = "";
     }
   };
 
