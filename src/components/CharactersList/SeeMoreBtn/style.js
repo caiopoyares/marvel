@@ -1,17 +1,9 @@
 import styled from "styled-components";
-import Spinner from "react-loader";
 
 const BtnContainer = styled.div`
   width: 100%;
-  position: relative;
   max-height: 40px;
   margin: 3rem 0;
-`;
-
-const Loader = styled(Spinner)`
-  position: "relative";
-  height: 40px;
-  color: white;
 `;
 
 const Button = styled.button`
@@ -32,4 +24,4 @@ const Button = styled.button`
   }
 `;
 
-export { BtnContainer, Button, Loader };
+export { BtnContainer, Button };

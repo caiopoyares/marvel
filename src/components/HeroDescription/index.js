@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Spinner from "react-loader";
 
 import { CharactersContainer } from "./style";
 
@@ -7,15 +8,18 @@ const apiKey = "68656f31c3623d9a8cfcc697750b60bc";
 
 const HeroDescription = ({ match }) => {
   const [heroInfo, setHeroInfo] = useState({});
+  const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
     const heroId = match.params.heroId;
     const endpoint = `https://gateway.marvel.com:443/v1/public/characters?id=${heroId}&apikey=${apiKey}`;
-    axios(endpoint).then(
-      response =>
-        setHeroInfo(response.data.data.results[0]) ||
-        console.log(response.data.data.results[0])
-    );
+    axios(endpoint)
+      .then(
+        response =>
+          setHeroInfo(response.data.data.results[0]) ||
+          console.log(response.data.data.results[0])
+      )
+      .then(() => setLoading(false));
   }, [match.params.heroId]);
 
   const {
@@ -28,7 +32,9 @@ const HeroDescription = ({ match }) => {
     urls
   } = heroInfo;
 
-  return (
+  return Loading ? (
+    <Spinner />
+  ) : (
     <CharactersContainer>
       {thumbnail && (
         <>

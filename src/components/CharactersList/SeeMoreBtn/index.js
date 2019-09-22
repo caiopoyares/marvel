@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Button, BtnContainer, Loader } from "./style";
+import { Button, BtnContainer } from "./style";
 import { connect } from "react-redux";
+import Spinner from "react-loader";
 
-const SeeMoreBtn = ({ heroes, currPage, nextPage }) => {
+const SeeMoreBtn = ({ heroes, nextPage }) => {
   const [loaded, setLoaded] = useState(true);
 
   useEffect(() => {
@@ -17,11 +18,8 @@ const SeeMoreBtn = ({ heroes, currPage, nextPage }) => {
   return (
     heroes.length > 0 && (
       <BtnContainer>
-        {loaded ? (
-          <Button onClick={() => nextPg()}>Ver mais</Button>
-        ) : (
-          <Loader color="#fff" />
-        )}
+        <Button onClick={() => nextPg()}>Ver mais</Button>
+        {!loaded && <Spinner color="#fff" options={{ position: "relative" }} />}
       </BtnContainer>
     )
   );

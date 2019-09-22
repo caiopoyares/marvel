@@ -17,6 +17,19 @@ const StyledApp = styled.div`
   background-attachment: fixed;
   padding-bottom: 2rem;
   min-height: 100vh;
+
+  & .loader {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid black;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export default StyledApp;

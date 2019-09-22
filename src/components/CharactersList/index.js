@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { CharactersContainer, List } from "./style";
 import CharacterBox from "../CharacterBox";
+import Spinner from "react-loader";
 
 import SeeMoreBtn from "./SeeMoreBtn";
 
@@ -11,6 +12,7 @@ const apiKey = "68656f31c3623d9a8cfcc697750b60bc";
 
 function CharactersList({ dispatch, heroes }) {
   const [currentPage, setCurrentPage] = useState(0);
+  const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
     const offset = 0 + 20 * currentPage;
@@ -21,10 +23,13 @@ function CharactersList({ dispatch, heroes }) {
           type: "FETCH_CHARACTERS",
           payload: response.data.data.results
         })
-      );
+      )
+      .then(() => setLoading(false));
   }, [currentPage, dispatch]);
 
-  return (
+  return Loading ? (
+    <Spinner />
+  ) : (
     <CharactersContainer>
       <List>
         {heroes &&
