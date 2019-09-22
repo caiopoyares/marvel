@@ -15,6 +15,12 @@ const Title = styled.h1`
   padding: 1.2rem;
   img {
     max-width: 80px;
+    @media (min-width: 900px) {
+      transition: transform 0.2s;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
   }
 `;
 

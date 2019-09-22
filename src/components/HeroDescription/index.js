@@ -41,6 +41,20 @@ const HeroDescription = ({ match }) => {
             )}
           </div>
           <div className="hero-description-box">
+            <div className="hero__details">
+              <p>
+                {comics.available}
+                <span>Quadrinhos</span>
+              </p>
+              <p>
+                {series.available}
+                <span>Séries</span>
+              </p>
+              <p>
+                {stories.available}
+                <span>Histórias</span>
+              </p>
+            </div>
             <div className="hero-description">
               <h3 className="hero__name">{name}</h3>
               {description !== "" ? (
@@ -52,18 +66,6 @@ const HeroDescription = ({ match }) => {
                   and his comic books.
                 </small>
               )}
-              <p>
-                <span>Quadrinhos: </span>
-                {comics.available}
-              </p>
-              <p>
-                <span>Séries: </span>
-                {series.available}
-              </p>
-              <p>
-                <span>Histórias: </span>
-                {stories.available}
-              </p>
             </div>
             {urls.length > 0 && (
               <a

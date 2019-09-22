@@ -16,16 +16,19 @@ const Loader = styled(Spinner)`
 
 const Button = styled.button`
   cursor: pointer;
-  background-color: crimson;
+  background-color: #4caf50;
   text-transform: uppercase;
-  color: white;
+  color: rgba(255, 255, 255, 0.9);
   border: none;
   border-radius: 2px;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 2.4rem;
   min-height: 40px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
   &:hover {
-    background-color: #cc1036;
+    background-color: #43a047;
   }
 `;
 

@@ -25,7 +25,7 @@ const Image = styled.img`
 
 const StyledListItem = styled.li`
   text-align: left;
-  transition: 0.2s;
+  transition: 0.4s;
   &:hover {
     transform: translateY(-8px);
   }
