@@ -14,11 +14,7 @@ const HeroDescription = ({ match }) => {
     const heroId = match.params.heroId;
     const endpoint = `https://gateway.marvel.com:443/v1/public/characters?id=${heroId}&apikey=${apiKey}`;
     axios(endpoint)
-      .then(
-        response =>
-          setHeroInfo(response.data.data.results[0]) ||
-          console.log(response.data.data.results[0])
-      )
+      .then(response => setHeroInfo(response.data.data.results[0]))
       .then(() => setLoading(false));
   }, [match.params.heroId]);
 
@@ -36,13 +32,13 @@ const HeroDescription = ({ match }) => {
     <Spinner />
   ) : (
     <CharactersContainer>
-      {thumbnail && (
+      {thumbnail.path && (
         <>
           <div className="img-container">
             {thumbnail && (
               <img
                 src={`${thumbnail.path}.${thumbnail.extension}`}
-                alt={`${thumbnail.name}`}
+                alt={`${name}`}
               />
             )}
           </div>
