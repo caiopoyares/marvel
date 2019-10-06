@@ -4,28 +4,31 @@ import { connect } from "react-redux";
 import { CharactersContainer, List } from "./style";
 import CharacterBox from "../CharacterBox";
 import Spinner from "react-loader";
+import { fetchCharacters } from "../../actions/charactersActions";
 
 import SeeMoreBtn from "./SeeMoreBtn";
 
 const endPoint = "https://gateway.marvel.com:443/v1/public";
 const apiKey = "68656f31c3623d9a8cfcc697750b60bc";
 
-function CharactersList({ dispatch, heroes }) {
+function CharactersList({ heroes, fetchCharactersWithDispatch }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
     const offset = 0 + 20 * currentPage;
-    axios
-      .get(`${endPoint}/characters?apikey=${apiKey}&offset=${offset}&limit=20`)
-      .then(response =>
-        dispatch({
-          type: "FETCH_CHARACTERS",
-          payload: response.data.data.results
-        })
-      )
-      .then(() => setLoading(false));
-  }, [currentPage, dispatch]);
+    console.log(currentPage);
+    if (heroes.length !== 0 && heroes.length > offset) {
+      setLoading(false);
+    } else {
+      axios
+        .get(
+          `${endPoint}/characters?apikey=${apiKey}&offset=${offset}&limit=20`
+        )
+        .then(response => fetchCharactersWithDispatch(response))
+        .then(() => setLoading(false));
+    }
+  }, [currentPage, fetchCharactersWithDispatch]);
 
   return Loading ? (
     <Spinner />
@@ -33,10 +36,10 @@ function CharactersList({ dispatch, heroes }) {
     <CharactersContainer>
       <List>
         {heroes &&
-          heroes.map(({ name, thumbnail, comics, id, description }) => {
+          heroes.map(({ name, thumbnail, comics, id, description }, index) => {
             return (
               <CharacterBox
-                key={name}
+                key={index}
                 name={name}
                 thumbnail={thumbnail}
                 comics={comics}
@@ -55,7 +58,17 @@ function CharactersList({ dispatch, heroes }) {
 }
 
 const mapStateToProps = state => ({
-  heroes: state.characters.charactersFetched
+  heroes: state.characters.allCharacters
 });
 
-export default connect(mapStateToProps)(CharactersList);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCharactersWithDispatch: characters =>
+      dispatch(fetchCharacters(characters))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CharactersList);

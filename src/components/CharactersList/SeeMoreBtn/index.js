@@ -27,7 +27,7 @@ const SeeMoreBtn = ({ heroes, nextPage }) => {
 
 const mapStateToProps = state => {
   return {
-    heroes: state.characters.charactersFetched
+    heroes: state.characters.allCharacters
   };
 };
 
