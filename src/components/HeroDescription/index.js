@@ -1,22 +1,43 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "react-loader";
+import { connect } from "react-redux";
+import { saveCharacter } from "../../actions/charactersActions";
 
 import { CharactersContainer } from "./style";
 
 const apiKey = "68656f31c3623d9a8cfcc697750b60bc";
 
-const HeroDescription = ({ match }) => {
+const HeroDescription = ({
+  saveCharacterWithDispatch,
+  match,
+  charactersFetched
+}) => {
   const [heroInfo, setHeroInfo] = useState({});
   const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
     const heroId = match.params.heroId;
-    const endpoint = `https://gateway.marvel.com:443/v1/public/characters?id=${heroId}&apikey=${apiKey}`;
-    axios(endpoint)
-      .then(response => setHeroInfo(response.data.data.results[0]))
-      .then(() => setLoading(false));
-  }, [match.params.heroId]);
+
+    const charIndex = charactersFetched.findIndex(
+      characterObj => characterObj.id === parseInt(heroId)
+    );
+    console.log(charIndex);
+
+    if (charIndex !== -1) {
+      setHeroInfo(charactersFetched[charIndex]);
+      setLoading(false);
+    } else {
+      const endpoint = `https://gateway.marvel.com:443/v1/public/characters?id=${heroId}&apikey=${apiKey}`;
+      axios(endpoint)
+        .then(response => {
+          const characterObj = response.data.data.results[0];
+          setHeroInfo(characterObj);
+          saveCharacterWithDispatch(characterObj);
+        })
+        .then(() => setLoading(false));
+    }
+  }, [match.params.heroId, charactersFetched, saveCharacterWithDispatch]);
 
   const {
     thumbnail,
@@ -86,4 +107,21 @@ const HeroDescription = ({ match }) => {
   );
 };
 
-export default HeroDescription;
+const mapStateToProps = state => {
+  return {
+    charactersFetched: state.characters.charactersFetched
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveCharacterWithDispatch: characterObj => {
+      return dispatch(saveCharacter(characterObj));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HeroDescription);
