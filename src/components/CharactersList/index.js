@@ -11,13 +11,12 @@ import SeeMoreBtn from "./SeeMoreBtn";
 const endPoint = "https://gateway.marvel.com:443/v1/public";
 const apiKey = "68656f31c3623d9a8cfcc697750b60bc";
 
-function CharactersList({ heroes, fetchCharactersWithDispatch }) {
+function CharactersList({ heroes, fetchCharactersWithDispatch, location }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
     const offset = 0 + 20 * currentPage;
-    console.log(currentPage);
     if (heroes.length !== 0 && heroes.length > offset) {
       setLoading(false);
     } else {
@@ -28,7 +27,20 @@ function CharactersList({ heroes, fetchCharactersWithDispatch }) {
         .then(response => fetchCharactersWithDispatch(response))
         .then(() => setLoading(false));
     }
-  }, [currentPage, fetchCharactersWithDispatch]);
+
+    if (location.offsetY === false) {
+      return;
+    } else {
+      setTimeout(() => {
+        window.scrollTo(0, location.offsetY);
+      }, 0);
+    }
+  }, [
+    currentPage,
+    fetchCharactersWithDispatch,
+    heroes.length,
+    location.offsetY
+  ]);
 
   return Loading ? (
     <Spinner />

@@ -22,7 +22,6 @@ const HeroDescription = ({
     const charIndex = charactersFetched.findIndex(
       characterObj => characterObj.id === parseInt(heroId)
     );
-    console.log(charIndex);
 
     if (charIndex !== -1) {
       setHeroInfo(charactersFetched[charIndex]);

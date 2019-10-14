@@ -1,8 +1,13 @@
-import { SAVE_CHARACTER, FETCH_CHARACTERS } from "../actions/charactersActions";
+import {
+  SAVE_CHARACTER,
+  FETCH_CHARACTERS,
+  SAVE_HEIGHT
+} from "../actions/charactersActions";
 
 const INITIAL_STATE = {
   allCharacters: [],
-  charactersFetched: []
+  charactersFetched: [],
+  lastHeight: null
 };
 const characterReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -21,7 +26,11 @@ const characterReducer = (state = INITIAL_STATE, action) => {
             charactersFetched: [...state.charactersFetched, action.payload]
           }
         : state;
-
+    case SAVE_HEIGHT:
+      return {
+        ...state,
+        lastHeight: action.payload
+      };
     default:
       return state;
   }

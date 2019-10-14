@@ -1,14 +1,20 @@
 import React from "react";
 import { Image, ImageContainer, StyledLink, StyledListItem } from "./style";
+import { connect } from "react-redux";
+import { saveHeight } from "../../actions/charactersActions";
 
-const CharacterBox = ({ name, thumbnail, comics, id, description }) => {
+const CharacterBox = ({ name, thumbnail, id, description, dispatch }) => {
+  const getLastHeight = () => {
+    dispatch(saveHeight(parseInt(window.pageYOffset)));
+  };
+
   return (
     <StyledListItem>
-      <StyledLink to={`/hero/${id}`}>
+      <StyledLink to={`/hero/${id}`} onClick={() => getLastHeight()}>
         <ImageContainer>
           <Image src={`${thumbnail.path}.${thumbnail.extension}`} alt={name} />
         </ImageContainer>
-        <div className="character-info">
+        <div className="character-info" style={{ marginBottom: "2rem" }}>
           <h4>{name}</h4>
           {description ? (
             <small>{description}</small>
@@ -19,15 +25,10 @@ const CharacterBox = ({ name, thumbnail, comics, id, description }) => {
               his comic books.
             </small>
           )}
-          <div className="character-bottom">
-            <p></p>
-            <p></p>
-            <p></p>
-          </div>
         </div>
       </StyledLink>
     </StyledListItem>
   );
 };
 
-export default CharacterBox;
+export default connect()(CharacterBox);
