@@ -27,7 +27,13 @@ function CharactersList({ heroes, fetchCharactersWithDispatch, location }) {
         .then(response => fetchCharactersWithDispatch(response))
         .then(() => setLoading(false));
     }
+  }, [
+    currentPage,
+    fetchCharactersWithDispatch,
+    heroes.length
+  ]);
 
+  useEffect(() => {
     if (location.offsetY === false) {
       return;
     } else {
@@ -35,12 +41,7 @@ function CharactersList({ heroes, fetchCharactersWithDispatch, location }) {
         window.scrollTo(0, location.offsetY);
       }, 0);
     }
-  }, [
-    currentPage,
-    fetchCharactersWithDispatch,
-    heroes.length,
-    location.offsetY
-  ]);
+  }, [location])
 
   return Loading ? (
     <Spinner />
